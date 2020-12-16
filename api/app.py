@@ -11,7 +11,7 @@ ALLOWED_EXTENSIONS = {'txt'}
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['DOWNLOAD_FOLDER'] = DOWNLOAD_FOLDER
-app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+app.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
 
@@ -57,5 +57,12 @@ def create_terminology():
             terminology_excel = Excel(os.path.splitext(filename)[0])
             terminology_excel.write_worksheet(terms)
             terminology_excel.close_workbook()
-            # I have to delete the files!
-            return send_from_directory(app.config['DOWNLOAD_FOLDER'], f'{os.path.splitext(filename)[0]}.xlsx', as_attachment=True)
+
+            response = send_from_directory(
+                app.config['DOWNLOAD_FOLDER'], f'{os.path.splitext(filename)[0]}.xlsx', as_attachment=True)
+
+            os.remove(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            os.remove(os.path.join(
+                app.config['DOWNLOAD_FOLDER'], f'{os.path.splitext(filename)[0]}.xlsx'))
+
+            return response
