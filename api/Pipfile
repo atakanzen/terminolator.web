@@ -9,6 +9,7 @@ requests = "*"
 nltk = "*"
 google-trans-new = "*"
 xlsxwriter = "*"
+python-dotenv = "*"
 
 [dev-packages]
 

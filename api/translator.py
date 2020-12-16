@@ -9,8 +9,8 @@ nltk.download('punkt')
 
 
 class Translator():
-    def __init__(self, file):
-        self.text = open(file, 'r').read()
+    def __init__(self, text):
+        self.text = text
         self.translator = google_translator()
 
     def set_stop_words(self, source_language):
@@ -28,7 +28,7 @@ class Translator():
         for src_word in words:
             if src_word not in self.stop_words and src_word not in ordered_words:
                 ordered_words.add(src_word)
-                tgt_word = translator.translate(
+                tgt_word = self.translator.translate(
                     src_word, lang_src=source_language, lang_tgt=target_language)
                 terminology[src_word] = tgt_word
         return terminology

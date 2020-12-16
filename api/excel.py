@@ -4,8 +4,9 @@ import xlsxwriter
 class Excel:
     def __init__(self, filename):
         self.filename = filename
-        self.workbook = xlsxwriter.Workbook(self.filename)
-        self.worksheet = workbook.add_worksheet("terminology")
+        self.workbook = xlsxwriter.Workbook(
+            f'./excel_files/{self.filename.lower()}.xlsx')
+        self.worksheet = self.workbook.add_worksheet("terminology")
 
     def write_worksheet(self, words):
         self.worksheet.write(0, 0, 'source_language')
