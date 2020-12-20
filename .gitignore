@@ -28,3 +28,7 @@ yarn-error.log*
 # API
 __pycache__
 .flaskenv
+
+# tailwind
+craco.config.js
+tailwind.config.js
