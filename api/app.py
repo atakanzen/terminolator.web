@@ -8,7 +8,7 @@ UPLOAD_FOLDER = './text_files'
 DOWNLOAD_FOLDER = './excel_files'
 ALLOWED_EXTENSIONS = {'txt'}
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='../build', static_url_path='/')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['DOWNLOAD_FOLDER'] = DOWNLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024
@@ -19,23 +19,24 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-def remove_excel_file(file):
-    file_path = os.path.join(app.config['UPLOAD_FOLDER'], file)
-    if os.path.exists(file_path):
-        os.remove(file_path)
-    else:
-        print('File does not exist.')
+@app.route('/')
+def index():
+    return app.send_static_file('index.html')
 
 
 @app.route('/api/', methods=["POST"])
 def create_terminology():
     if 'file' not in request.files:
-        return "file not in requet"
+        code = 400
+        msg = "file not in request"
+        return code, msg
 
     file = request.files['file']
 
     if file.filename == '':
-        return "file name empty"
+        code = 400
+        msg = "file name empty"
+        return code, msg
 
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)

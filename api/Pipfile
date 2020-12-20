@@ -10,6 +10,7 @@ nltk = "*"
 google-trans-new = "*"
 xlsxwriter = "*"
 python-dotenv = "*"
+gunicorn = "*"
 
 [dev-packages]
 
