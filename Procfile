@@ -1,1 +1,1 @@
-web: gunicorn app:app --prefix api
+web: gunicorn --pythonpath api app.wsgi
