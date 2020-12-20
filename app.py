@@ -8,7 +8,7 @@ UPLOAD_FOLDER = './text_files'
 DOWNLOAD_FOLDER = './excel_files'
 ALLOWED_EXTENSIONS = {'txt'}
 
-app = Flask(__name__, static_folder='../build', static_url_path='/')
+app = Flask(__name__, static_folder='./client/build', static_url_path='/')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['DOWNLOAD_FOLDER'] = DOWNLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024
