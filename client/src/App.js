@@ -16,7 +16,7 @@ function App() {
       <Navbar />
       <div className='flex flex-col items-center h-2/3 space-y-6'>
         <div className="w-3/4 h1/4 p-2 m-2">
-          <p className="text-base font-medium text-center">the great tool for ending cumbersome process of creating a terminology.</p>
+          <p className="text-base font-medium text-center">End cumbersome process of creating a terminology.</p>
       </div>
       <div className="flex flex-col items-center justify-center bg-gray-100 text-gray-500 shadow rounded-lg w-3/4 h-full cursor-pointer">
           <Dropzone accept=".txt" maxFiles={1} maxSize={5 * 1024 * 1024} onDrop={acceptedFile => {
@@ -54,7 +54,7 @@ function App() {
         <section className="h-full">
                 <div {...getRootProps({className:"flex flex-col items-center justify-center h-full"})}>
             <input {...getInputProps({className:"h-full"})} />
-            <p>Drag and drop a text file (".txt") here, or click to select one.</p>
+            <p className="p-3">Drag and drop a text file (".txt") here, or click to select one.</p>
           </div>
         </section>
       )}
