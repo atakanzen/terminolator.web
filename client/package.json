@@ -20,7 +20,7 @@
   },
   "scripts": {
     "start": "craco start",
-    "start-api": "cd .. && $(pipenv --venv)/bin/flask run --no-debugger",
+    "start-api": "cd .. && pipenv install &&$(pipenv --venv)/bin/flask run --no-debugger",
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject"
