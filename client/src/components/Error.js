@@ -9,7 +9,7 @@ function Error() {
       <p className="font-bold">Upload Failed</p>
       <p>
         Please make sure you are using a file with ".txt" extension. <br /> Max
-        file size is 4Kb (800~ words)
+        file size is 5Kb (800~ words)
       </p>
     </div>
   );

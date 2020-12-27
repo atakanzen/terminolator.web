@@ -24,7 +24,7 @@ function App() {
           <Dropzone
             accept=".txt"
             maxFiles={1}
-            maxSize={4000}
+            maxSize={5000}
             onDrop={(acceptedFile) => {
               if (acceptedFile.length > 0) {
                 setLoading(true);
