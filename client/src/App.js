@@ -29,7 +29,10 @@ function App() {
               if (acceptedFile.length > 0) {
                 setLoading(true);
                 var formdata = new FormData();
-                var fileName = acceptedFile[0].name.split(" ").join("_");
+                var fileName = acceptedFile[0].name
+                  .toLowerCase()
+                  .split(" ")
+                  .join("_");
                 formdata.append("file", acceptedFile[0], fileName);
 
                 var requestOptions = {
