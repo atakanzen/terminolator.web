@@ -11,7 +11,6 @@ ALLOWED_EXTENSIONS = {'txt'}
 app = Flask(__name__, static_folder='./client/build', static_url_path='/')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['DOWNLOAD_FOLDER'] = DOWNLOAD_FOLDER
-app.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
 
@@ -51,12 +50,18 @@ def create_terminology():
             return code, msg
         else:
             translator = Translator(text)
-            translator.set_stop_words('english')
+            translator.detect_source_language(" ".join(text.split(" ")[:5]))
+            translator.set_stop_words()
             tokenized_text = translator.tokenize_text()
+
             words = translator.parse_words_alpha(tokenized_text)
-            terms = translator.translate(words, 'en', 'tr')
+            terms = translator.translate(words)
+
+            source_language, target_language = translator.get_source_and_target()
+
             terminology_excel = Excel(os.path.splitext(filename)[0])
-            terminology_excel.write_worksheet(terms)
+            terminology_excel.write_worksheet(
+                terms, source_language, target_language)
             terminology_excel.close_workbook()
 
             response = send_from_directory(

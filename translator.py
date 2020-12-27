@@ -13,8 +13,11 @@ class Translator():
         self.text = text
         self.translator = google_translator()
 
-    def set_stop_words(self, source_language):
-        self.stop_words = set(stopwords.words(source_language))
+    def detect_source_language(self, text):
+        self.source_language = self.translator.detect(text)[1]
+
+    def set_stop_words(self):
+        self.stop_words = set(stopwords.words(self.source_language))
 
     def tokenize_text(self):
         return word_tokenize(self.text)
@@ -22,13 +25,23 @@ class Translator():
     def parse_words_alpha(self, tokenized_text):
         return [word.lower() for word in tokenized_text if word.isalpha()]
 
-    def translate(self, words, source_language, target_language):
+    def get_source_and_target(self,):
+        if self.source_language == 'turkish':
+            return ['tr', 'en']
+        else:
+            return ['en', 'tr']
+
+    def translate(self, words):
+        if self.source_language == 'turkish':
+            self.target_language = 'en'
+        else:
+            self.target_language = 'tr'
         ordered_words = set()
         terminology = {}
         for src_word in words:
             if src_word not in self.stop_words and src_word not in ordered_words:
                 ordered_words.add(src_word)
                 tgt_word = self.translator.translate(
-                    src_word, lang_src=source_language, lang_tgt=target_language)
+                    src_word, lang_src=self.source_language, lang_tgt=self.target_language)
                 terminology[src_word] = tgt_word
         return terminology
