@@ -86,9 +86,7 @@ function App() {
         {success && <Success />}
         <div className="text-indigo-600 font-medium hover:underline">
           <a
-            href="https://atakanzengin.me"
-            target="_blank"
-            rel="noreferrer noopener"
+            href="https://zengin.me"
           >
             Made with <span className="text-red-500">&#9829;</span> by Atakan
             Zengin
