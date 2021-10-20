@@ -24,3 +24,6 @@ Currently the application accepts files with `.txt` extension only. I'll make im
 Finally, I **strongly** recommend you to **revise your terminologies** since there might be some mistakes. So please be sure to read your source text and check your terminology.
 
 Use it to save time. Enjoy it. 
+
+## Blog
+I have also written a blog post about terminolator, you can find it [here](https://atakanzen.com/blog/terminolator).
